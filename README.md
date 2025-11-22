@@ -1,8 +1,7 @@
-# Hack112.2025
-Project Title: [FILL IN HERE]
+# Project Title
 
-In this file, please specify:
-- Which award categories you are submitting for
+Award Categories:
+- 
 - What external modules you used (if any) and how to install them
 - How to run your program
 - A General description of your program
