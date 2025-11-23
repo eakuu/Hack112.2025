@@ -8,17 +8,20 @@ from tensorflow.keras.models import load_model
 
 class ParkinsonsDataCollector:
     def __init__(self, port, modelPath, encoderPath, baudrate=115200):
-        self.port = port
-        self.baudrate = baudrate
-        self.ser = None
-        self.allData = []
-        self.predictions = [] 
-        self.isCollecting = False
-        self.currentSecond = 0
+        self.port = port                # The chosen port by the person (we used usbmodem101).
+        self.baudrate = baudrate        # This is the symbol frequency at which data is collected. 115200 is standard.
+        self.ser = None                 # This is for the serial port connection.
+        self.allData = []               # This is representative of all x,y,z samples for all 10 seconds. That is a total of 3000 samples!
+        self.predictions = []           # This is representative of each percentage prediction of Parkinsons every second.
+        self.isCollecting = False       # This is the variable that is dependent on the button press and enables a loop.
+        self.currentSecond = 0          # This helps for displaying the images of what second out of 10 the user is on.
         
+
+        # Here we load the model from the model we manually trained. load_model is builtin to tensorflow.
         print(f"Loading model from {modelPath}...")
         self.model = load_model(modelPath)
         
+        # We also have to load the encoded symbols to understand True and False predictions. There is no builtin so manually open file.
         print(f"Loading encoder from {encoderPath}...")
         self.encoder = self.loadEncoder(encoderPath)
     
@@ -30,15 +33,21 @@ class ParkinsonsDataCollector:
             print(f"Encoder file {encoderPath} not found.")
             return None
     
+    # To establish serial port connection, check port, analyze at symbole rate we defined, and ensure connection to Arduino.
+    # The time.sleep and resent buffer are standard steps in connecting devices by serial port as buffers.
     def connect(self):
         self.ser = serial.Serial(self.port, self.baudrate, timeout=1)
         time.sleep(2)
         self.ser.reset_input_buffer()
         print("Connected to Arduino!")
     
+    # This is a really important part, as this is what reads each line outputted as serial data from the arduino.
+    # It'll help us find the start of the thing (when serial monitor says BUTTON_PRESSED), collect XYZ data, and end it.
     def readLine(self):
         return self.ser.readline().decode('utf-8').strip()
     
+    # This is just some standard data processing to stack x y and z into one data sequence, 
+    # and either pads or truncates around teh target length.
     def prepareModelInput(self, x, y, z, target_length=100):
         dataSequence = np.column_stack((x, y, z))
         
@@ -52,18 +61,25 @@ class ParkinsonsDataCollector:
         
         return np.expand_dims(dataSequence, axis=0)
     
+    # This is what uses the keras model to predict the probability of Parkinsons.
+    # It adds all the True and False predictions to a dictionary with the probabilities.
     def predictFromArrays(self, x, y, z):
+
+        # Gives predictions in form [False Probability, True Probability]
         inputData = self.prepareModelInput(x, y, z)
-        predictionProbs = self.model.predict(inputData, verbose=0)
-        
+        predictionProbs = self.model.predict(inputData, verbose=0)  
+
+        # Adds the probabilities to a dict under their respective label.
         results = {}
         for i, className in enumerate(self.encoder.classes_):
             probability = float(predictionProbs[0][i] * 100)
-            results[className] = probability
+            results[className] = probability                        
         
-        predictedClass = max(results, key=results.get)
-        return predictedClass, results
+        # Gives the most likely class that it is [False or True]
+        mostLikelyClass = max(results, key=results.get) 
+        return mostLikelyClass, results
     
+    # AI Generated startCollection because we haven't used thread before.
     def startCollection(self, callback):
         self.isCollecting = True
         self.allData = []
@@ -74,25 +90,33 @@ class ParkinsonsDataCollector:
         thread.daemon = True
         thread.start()
     
+    # This function collects the 10 seconds of data threads and adds them to the allData and predictions lists.
     def _collectDataThread(self, callback):
         print("Waiting for button press on Arduino...")
         callback('waiting', None)
         
         while True:
+            # Uses the readLine function to check for indicators.
             line = self.readLine()
             
+            # ReadLine sees a button press message from the arduino.
             if line == "BUTTON_PRESSED":
                 print("Button pressed! Collecting data...")
                 callback('collecting', None)
                 
+                # Starts collecting in a loop.
                 while True:
                     xLine = None
                     yLine = None
                     zLine = None
                     
+                    # The for loop of 10 here is to ensure no data loss.
+                    # We were losing entire lines because of garbage serial communication,
+                    # and slow laptops lol. But with this loop its almost guaranteed we read all the data as needed.
                     for _ in range(10):
                         line = self.readLine()
                         
+                        # Checks the prefix of the line. For reference, the arduino outputs lines like this 'X:n1,n2,n3,n4...'
                         if line[:2] == "X:":
                             xLine = line
                         elif line[:2] == "Y:":
@@ -107,6 +131,7 @@ class ParkinsonsDataCollector:
                             callback('complete', {'avg': avgProb, 'std': stdDev})
                             return
                         
+                        # This is when xLine yLine and zLine all finally exist without dataLoss of the Xs or the entire lines.
                         if xLine and yLine and zLine:
                             xValues = np.array([float(v) for v in xLine[2:].split(',')])
                             yValues = np.array([float(v) for v in yLine[2:].split(',')])
@@ -114,7 +139,7 @@ class ParkinsonsDataCollector:
                             
                             self.allData.append((xValues, yValues, zValues))
                             
-                            predictedClass, results = self.predictFromArrays(xValues, yValues, zValues)
+                            mostLikelyClass, results = self.predictFromArrays(xValues, yValues, zValues)
                             parkinsonsProb = results.get('True', results.get(True, 0.0))
                             self.predictions.append(parkinsonsProb)
                             self.currentSecond = len(self.allData)
@@ -122,11 +147,13 @@ class ParkinsonsDataCollector:
                             callback('update', {'second': self.currentSecond, 'prob': parkinsonsProb})
                             print(f"Second {self.currentSecond}/10 - Parkinsons: {parkinsonsProb:.1f}%")
                             break
-    
+                        
+    # Close after 10 seconds so that a new one can be initiated.
     def close(self):
         if self.ser:
             self.ser.close()
             print("Connection closed.")
+
 
 
 # CMU Graphics App
