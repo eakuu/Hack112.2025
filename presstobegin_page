@@ -1,0 +1,20 @@
+from cmu_graphics import *
+
+def onAppStart(app):
+    app.height = 720
+    app.width = 1280
+    app.nextPage = False
+    
+def redrawAll(app):
+    if app.nextPage != True:
+        drawRect(0, 0, 1280, 720, fill = rgb(70, 183, 224))
+        drawLabel('Press any button to begin', 640, 360, align = 'center', size = 72)
+    else:
+        drawRect(0, 0, 1280, 720, fill = rgb(235, 140, 63))
+        
+def onMousePress(app, mx, my):
+    app.nextPage = True
+    
+
+def onKeyPress(app, key):
+    app.nextPage = True
