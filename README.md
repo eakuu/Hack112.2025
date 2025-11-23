@@ -1,4 +1,4 @@
-# Project Title: Detecting Risk of Parkinsons with Voice Recordings
+# Detecting Potential Risk of Parkinson's Disease through accelerometery using OOP, MVC, and a 1D-CNN training pipeline for binary classification.
 
 Award Categories:
 
