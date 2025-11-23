@@ -1,0 +1,86 @@
+from cmu_graphics import *
+
+def onAppStart(app):
+    app.height = 720
+    app.width = 1280
+    app.initialOpacity = 100
+    app.initial = True
+    app.parkinsons = 0
+    
+    app.bgSize = 2000
+    app.BGColour = (255, 146, 72)
+    app.afterBGColour = (173, 216, 230)
+    
+    app.historyColour = (255, 146, 72)
+    app.recsColour = (255, 146, 72)
+    
+    app.r = 20
+    app.buttonWidth = 300 + app.r
+    app.buttonHeight = 100 + app.r
+    app.historyLeft = 300 -app.buttonWidth/12
+    app.historyTop = 360 - app.buttonHeight/2
+    app.recsLeft = 900-app.buttonWidth/2
+    app.recsTop = 360 - app.buttonHeight/2
+    app.historyVertices = [(app.historyLeft, app.historyTop), (app.historyLeft+app.buttonWidth-app.r, app.historyTop+app.buttonHeight-app.r),(app.historyLeft, app.historyTop + app.buttonHeight-app.r), (app.historyLeft+app.buttonWidth-app.r, app.historyTop)]
+    app.recsVertices = [(app.recsLeft, app.recsTop), (app.recsLeft+app.buttonWidth-app.r, app.recsTop+app.buttonHeight-app.r),(app.recsLeft, app.recsTop + app.buttonHeight-app.r), (app.recsLeft+app.buttonWidth-app.r, app.recsTop)]
+    
+def redrawAll(app):
+    if app.initial:
+        drawRect(0, 0, app.bgSize, app.bgSize, fill = rgb(*app.BGColour), opacity = app.initialOpacity)
+        drawLabel("We have your results!", 640, 360, size = 72, opacity = app.initialOpacity)
+    else:
+        drawRect(0, 0, app.bgSize, app.bgSize, fill = rgb(*app.afterBGColour))
+        drawLabel(f"You have a {app.parkinsons}% chance of having parkinsons", 680, 100, bold = True, size = 42)
+        # drawLabel("Tremor Graph", 680, 170, size = 30)
+        # drawRect(680, 400, 600, 400, fill = None, border = "white", borderWidth = 10, align = 'center')
+            
+       
+        drawRoundedRect(app.historyLeft, app.historyTop, app.buttonWidth, app.buttonHeight, app.r, fill = rgb(*app.historyColour))
+        drawRoundedRect(app.recsLeft, app.recsTop, app.buttonWidth, app.buttonHeight, app.r, fill = rgb(*app.recsColour))
+        drawLabel("Tremor History", app.historyLeft + app.buttonWidth/2, app.historyTop + app.buttonHeight/2, size = 32)
+        drawLabel("Recommendations", app.recsLeft + app.buttonWidth/2, app.recsTop + app.buttonHeight/2, size = 32)
+
+def drawRoundedRect(x, y, w, h, r, fill):
+    drawRect(x+r, y, w - 2*r, h, fill = fill)
+    drawRect(x, y+r, w, h - 2*r, fill = fill)
+    
+    drawCircle(x + r, y+r, r, fill= fill)
+    drawCircle(x + w - r, y+r, r, fill= fill)
+    drawCircle(x + r, y+h-r, r, fill= fill)
+    drawCircle(x + w -r, y+h-r, r, fill= fill)
+    
+def onMouseMove(app, mx, my):
+    highlighted = (255, 103, 0)
+    if inButton(mx, my, app.historyLeft, app.historyTop, app.buttonWidth, app.buttonHeight):
+        app.historyColour = highlighted
+    else:
+        app.historyColour = (255, 146, 72)
+    
+    if inButton(mx, my, app.recsLeft, app.recsTop, app.buttonWidth, app.buttonHeight):
+        app.recsColour = highlighted
+    else:
+        app.recsColour = (255, 146, 72)
+    
+def onMousePress(app, mx, my):
+    if inButton(mx, my, app.historyLeft, app.historyTop, app.buttonWidth, app.buttonHeight):
+        print("History Clicked")
+    
+    if inButton(mx, my, app.recsLeft, app.recsTop, app.buttonWidth, app.buttonHeight):
+       print("Recs Clicked")
+       
+def inButton(mx, my, x, y, w, h):
+    return x <= mx <= x+w and y<= my <= y+h
+
+def onStep(app):
+    if app.initial:
+        app.initialOpacity -=1
+        if app.initialOpacity == 0:
+            app.initial = False
+
+def onKeyPress(app, key):
+    pass
+            
+def main():
+    runApp()
+main()
+    
