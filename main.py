@@ -1,6 +1,6 @@
 from cmu_graphics import *
 from begin_page import drawBeginPage
-from history_page import drawHistoryPage
+from loadingPage import drawLoadingPage
 
 def onAppStart(app):
     #app.background = rgb(175, 227, 199)
@@ -25,8 +25,8 @@ def redrawAll(app):
         drawHomePage(app)
     elif app.page == 'begin':
         drawBeginPage(app)
-    elif app.page == 'history':
-        drawHistoryPage(app)
+    elif app.page == 'loading':
+        drawLoadingPage(app)
 
 def drawHomePage(app):
     drawImage(app.bkg, 0, 0)
