@@ -206,7 +206,23 @@ def drawEye(app):
     pupilX = cx + app.pupilOffset
     drawCircle(pupilX, cy, 28, fill=None, border='cyan', borderWidth=4)
 
+# ----------loader animation setup----------
+def setupLoader(app):
+    app.loaderNumCircles = 4
+    app.loaderRadius = 20
+    app.loaderSpacing = 60
+    app.loaderCurrentStep = 0
+    app.loaderLastUpdate = time.time()
+    app.loaderStepDelay = 0.03
+    app.loaderSpeed = 0.05
 
+def updateLoader(app):
+    currentTime = time.time()
+    if currentTime - app.loaderLastUpdate > app.loaderStepDelay:
+        app.loaderCurrentStep += app.loaderSpeed
+        if app.loaderCurrentStep >= app.loaderNumCircles:
+            app.loaderCurrentStep -= app.loaderNumCircles
+        app.loaderLastUpdate = currentTime
 
 # App
 def onAppStart(app):
@@ -224,6 +240,8 @@ def onAppStart(app):
 
     #eye app start
     setupEye(app)
+    #load
+    setupLoader(app)
     
     # This just initializes the collector. Claude.ai recommended we use the try/except notation for this.
     # app.collector is an instance of the ParkinsonsDataCollector class, with the port, model, and encoder all defined.
@@ -247,6 +265,9 @@ def dataCallback(app, state, data):
 def onStep(app):
     #update eye animation
     updateEye(app)
+    #update loader
+    updateLoader(app)
+    
     if app.pendingUpdate:
         state, data = app.pendingUpdate
         app.pendingUpdate = None
@@ -459,6 +480,16 @@ def redrawAll(app):
                  size=22, fill='cyan', bold=True, font = 'monospace')
         drawLabel('Please press the button on your Arduino', app.width//2, 290, 
                  size=16, fill='white', font = 'monospace')
+
+        centerX = app.width // 2
+        centerY = 400  # below labels
+        for i in range(app.loaderNumCircles):
+            distance = abs(app.loaderCurrentStep - i)
+            if distance > app.loaderNumCircles / 2:
+                distance = app.loaderNumCircles - distance
+            opacity = max(30, int(100 * (1 - distance/2)))
+            x = centerX + (i - (app.loaderNumCircles - 1)/2) * app.loaderSpacing
+            drawCircle(x, centerY, app.loaderRadius, fill='cyan', opacity=opacity)
     
     elif app.state == 'collecting':
         drawLabel(f'Collecting Data: {app.currentSecond}/10 seconds', 
