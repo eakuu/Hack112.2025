@@ -6,6 +6,7 @@ import numpy as np
 import pickle
 from tensorflow.keras.models import load_model
 import random
+import math
 
 class ParkinsonsDataCollector:
     def __init__(self, port, modelPath, encoderPath, baudrate=115200):
@@ -447,6 +448,10 @@ def drawMovementGraph(app):
     except Exception as e:
         print(f"Error drawing legend/separators: {e}")
 
+def getRadiusEndpoint(cx, cy, r, theta):
+    return (cx + r*math.cos(math.radians(theta)),
+            cy - r*math.sin(math.radians(theta)))
+
 def redrawAll(app):
     # Background
     drawRect(0, 0, app.width, app.height, fill='black')
@@ -459,7 +464,7 @@ def redrawAll(app):
     buttonX, buttonY = app.width // 2, 150
     buttonWidth, buttonHeight = 200, 60
     
-    if app.state in ['idle', 'complete']:
+    if app.state in ['idle', 'complete'] and app.connected:
         if app.state == 'idle':
             drawEye(app)
             drawRect(buttonX, buttonY, buttonWidth, buttonHeight, 
@@ -469,8 +474,18 @@ def redrawAll(app):
     # Status Display
     if app.state == 'idle':
         if not app.connected:
-            drawLabel('Error: Could not connect to device', app.width//2, 250, 
-                     size=18, fill='red', font = 'monospace')
+            drawCircle(app.width//2, app.height//2, 75, fill = None, border = 'red', borderWidth = 10)
+            tLx, tLy = getRadiusEndpoint(app.width//2, app.height//2, 75, 135)
+            tRx, tRy = getRadiusEndpoint(app.width//2, app.height//2, 75, 45)
+            bRx, bRy = getRadiusEndpoint(app.width//2, app.height//2, 75, -45)
+            bLx, bLy = getRadiusEndpoint(app.width//2, app.height//2, 75, -135)
+            drawLine(app.width//2, app.height//2, tLx, tLy, fill = 'red', lineWidth = 10)
+            drawLine(app.width//2, app.height//2, tRx, tRy, fill = 'red', lineWidth = 10)
+            drawLine(app.width//2, app.height//2, bLx, bLy, fill = 'red', lineWidth = 10)
+            drawLine(app.width//2, app.height//2, bRx, bRy, fill = 'red', lineWidth = 10)
+            drawLabel('Error: Could not connect to device', app.width//2, 230, 
+                     size=20, fill='red', font = 'monospace', bold = True)
+            drawLabel('*check if device is properly connected and secured', app.width//2, 475, size  = 20, fill = 'red', font = 'monospace', bold = True)
         else:
             drawLabel('Press BEGIN to start', app.width//2, 250, 
                      size=20, fill='white', font = 'monospace')
