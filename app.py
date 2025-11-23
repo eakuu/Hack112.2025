@@ -154,23 +154,22 @@ class ParkinsonsDataCollector:
             self.ser.close()
             print("Connection closed.")
 
-
-
-# CMU Graphics App
+# App
 def onAppStart(app):
     app.width = 1200
     app.height = 700
-    app.state = 'idle'  # idle, waiting, collecting, complete
+    app.state = 'idle'  # The states include idle, waiting, collecting, complete
     app.currentSecond = 0
     app.currentProb = 0
-    app.predictions = []
+    app.allData = [] # All XYZ data, similar to the class attribute we have
+    app.predictions = [] # All predictions, similar to the class attribute we have
     app.avgProb = 0
     app.stdDev = 0
-    app.stepsPerSecond = 10  # Check for updates 10 times per second
+    app.stepsPerSecond = 10  # Check for updates 10 times per second. It does not have to be as fast as the device because it outputs once per second.
     app.pendingUpdate = None
-    app.allData = []
     
-    # Initialize collector
+    # This just initializes the collector. Claude.ai recommended we use the try/except notation for this.
+    # app.collector is an instance of the ParkinsonsDataCollector class, with the port, model, and encoder all defined.
     try:
         app.collector = ParkinsonsDataCollector(
             port='/dev/cu.usbmodem101',
@@ -183,11 +182,12 @@ def onAppStart(app):
         print(f"Error initializing: {e}")
         app.connected = False
 
+# AI Added this. Its specifically for whether there has been a change or not.
 def dataCallback(app, state, data):
     app.pendingUpdate = (state, data)
 
+# This processes the updates. It helps to initialize variables and add values to dictionaries.
 def onStep(app):
-    # Process pending updates from the background thread
     if app.pendingUpdate:
         state, data = app.pendingUpdate
         app.pendingUpdate = None
@@ -206,15 +206,15 @@ def onStep(app):
             app.state = 'complete'
             app.avgProb = data['avg']
             app.stdDev = data['std']
-            app.allData = app.collector.allData  # Get all the raw data
+            app.allData = app.collector.allData 
 
+# Checks for button presses within certain regions depending on the state of the app.
 def onMousePress(app, mouseX, mouseY):
-    # Begin button bounds
     if app.state in ['idle', 'complete']:
         if app.state == 'idle':
             buttonX, buttonY = app.width // 2, 150
             buttonWidth, buttonHeight = 200, 60
-        else:  # complete state - button at bottom
+        else: 
             buttonX, buttonY = app.width // 2, app.height - 40
             buttonWidth, buttonHeight = 200, 50
         
@@ -228,13 +228,16 @@ def onMousePress(app, mouseX, mouseY):
                 app.allData = []
                 app.collector.startCollection(lambda s, d: dataCallback(app, s, d))
 
+# This draws the graph based on the hand movement. AI Recommended a lot of try/except notation in case of fault serial comms.
+# There was solid AI use in this section, as the graph was incredibly hard to create. We did most of the parameterization,
+# and AI added a lot of the try/except stuff after.
 def drawMovementGraph(app):
     try:
-        # Graph parameters - smaller graph
+        # Graph parameters
         graphX = 150
         graphY = 275
         graphWidth = app.width - 300
-        graphHeight = 320  # Smaller height
+        graphHeight = 320 
         
         # Draw graph background
         drawRect(graphX, graphY, graphWidth, graphHeight, fill='black', 
@@ -291,18 +294,18 @@ def drawMovementGraph(app):
         return
     
     try:
-        # Draw grid lines (static, no opacity animation)
+        # Draw the grid lines
         for i in range(5):
             y = graphY + (i * graphHeight / 4)
             drawLine(graphX, y, graphX + graphWidth, y, fill='dimGray', lineWidth=1)
             value = maxVal - (i * valueRange / 4)
             drawLabel(f'{value:.1f}', graphX - 15, y, size=10, fill='lightGray', align='right', font = 'monospace')
         
-        # Draw bottom axis line
+        # Draw the bottom axis line
         drawLine(graphX, graphY + graphHeight, graphX + graphWidth, graphY + graphHeight, 
                 fill='cyan', lineWidth=2)
         
-        # Draw second markers
+        # Draw the markers
         for second in range(11):
             x = graphX + (second * graphWidth / 10)
             drawLine(x, graphY + graphHeight, x, graphY + graphHeight + 5, 
@@ -316,7 +319,6 @@ def drawMovementGraph(app):
         # Helper function to convert data point to screen coordinates
         def toScreen(index, value):
             x = graphX + (index / totalSamples) * graphWidth
-            # Clamp value to avoid drawing outside bounds
             normalizedValue = (value - minVal) / valueRange
             normalizedValue = max(0, min(1, normalizedValue))
             y = graphY + graphHeight - (normalizedValue * graphHeight)
@@ -329,7 +331,7 @@ def drawMovementGraph(app):
             ('deepSkyBlue', allZ, 'Z')
         ]
         
-        for color, data, label in datasets:
+        for (color, data, label) in datasets:
             if len(data) > 1:
                 for i in range(len(data) - 1):
                     try:
@@ -387,8 +389,7 @@ def redrawAll(app):
     if app.state == 'idle':
         if not app.connected:
             drawLabel('Error: Could not connect to device', app.width//2, 250, 
-                     size=20, fill='red', font = 'monospace')
-            drawLabel('*check if device is properly connected and secured', app.width//2, 280, size  = 20, fill = 'red', font = 'monospace')
+                     size=18, fill='red', font = 'monospace')
         else:
             drawLabel('Press BEGIN to start', app.width//2, 250, 
                      size=20, fill='white', font = 'monospace')
@@ -400,11 +401,10 @@ def redrawAll(app):
                  size=16, fill='white', font = 'monospace')
     
     elif app.state == 'collecting':
-        # Progress
         drawLabel(f'Collecting Data: {app.currentSecond}/10 seconds', 
                  app.width//2, 250, size=22, fill='cyan', bold=True, font = 'monospace')
         
-        # Progress bar
+        # Progress bar for seconds
         barWidth = 500
         barHeight = 30
         barX = app.width//2 - barWidth//2
