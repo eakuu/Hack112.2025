@@ -21,7 +21,7 @@ Social Good.
 **How to run your program:**
 
 MAKE SURE YOU DO THESE IN ORDER. YOU CANNOT RUN THE APP WITHOUT PLUGGING IN THE ARDUINO.
-- Plug in the arduino to your computer's port. Note that this code was built for MacBook, so the port uses usbModem101 as the port name in the code. This can be switched in the app.py code at variable 'port'. Then, strap the arduino to your upper hand using tape or whatever you feel comfortable with.
+- Plug in the arduino to your computer's port. Note that this code was built for MacBook, so the port uses usbModem101 as the port name in the code. This can be switched in the app.py code at variable 'port'. Then, strap the arduino to your upper hand using tape or whatever you feel comfortable with. THE WAY YOU ORIENT IT SHOULD BE: WIRE PARALLEL TO YOUR FINGERS AND FACING YOUR FINGERS, ARDUINO COMPONENTS SIDE UP.
 - When plugged in, run the code app.py in your IDE. Ensure you have the files 'parkinsonsEye.keras' and 'labelEncoder.pkl' downloaded, as these are the primary components of the machine learning algorithm.
 - Press begin on the app, and it will prompt you to press the button on the arduino device. This button is the blue one sticking out to the side. When pressed, the app will begin assessing tremor patterns in your hand. It will provide a percentage probability of your predicted Parkinson's tremors every second for ten seconds.
 - At the end, it will display a graph of the XYZ acceleration of your hand movements, with the average probability of your predicted Parkinson's alongside the standard deviation.
