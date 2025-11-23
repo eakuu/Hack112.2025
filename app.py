@@ -5,6 +5,7 @@ import time
 import numpy as np
 import pickle
 from tensorflow.keras.models import load_model
+import random
 
 class ParkinsonsDataCollector:
     def __init__(self, port, modelPath, encoderPath, baudrate=115200):
@@ -154,6 +155,59 @@ class ParkinsonsDataCollector:
             self.ser.close()
             print("Connection closed.")
 
+# ----------eye animation idle state----------
+def setupEye(app):
+    app.eyeX = app.width//2
+    app.eyeY = 450
+    
+    app.pupilOffset = 0
+    app.pupilTarget = 0
+    app.lastChangeTime = time.time()
+    app.nextChangeDelay = random.uniform(0.5, 2.5)
+
+def updateEye(app):
+    currentTime = time.time()
+    if currentTime - app.lastChangeTime > app.nextChangeDelay:
+        app.pupilTarget = random.randint(-40, 40)
+        app.lastChangeTime = currentTime
+        app.nextChangeDelay = random.uniform(0.5, 2.5)
+    
+    speed = 2
+    if app.pupilOffset < app.pupilTarget:
+        app.pupilOffset += speed
+    elif app.pupilOffset > app.pupilTarget:
+        app.pupilOffset -= speed
+
+def drawEye(app):
+    cx = app.eyeX
+    cy = app.eyeY
+    eyeWidth = 220
+    eyeHeight = 90
+    leftX = cx - eyeWidth//2
+    rightX = cx + eyeWidth//2
+    topY = cy - eyeHeight//2
+    bottomY = cy + eyeHeight//2
+    points = [
+        leftX, cy, 
+        (leftX + cx)//2, (cy + topY)//2 - 10,
+        ((leftX + cx)//2 + cx)//2, (cy + topY)//2 - 18,
+        cx, topY, 
+        ((rightX + cx)//2 + cx)//2, (cy + topY)//2 - 18,
+        (cx+rightX)//2, (topY+cy)//2 - 10, 
+        rightX, cy,
+        (cx+rightX)//2, (bottomY+cy)//2 + 10, 
+        ((rightX + cx)//2 + cx)//2, (cy + bottomY)//2 + 20,
+        cx, bottomY, 
+        ((leftX + cx)//2 + cx)//2, (cy + bottomY)//2 + 20,
+        (leftX + cx)//2, (cy + bottomY)//2 + 10, 
+        leftX, cy
+        ]
+    drawPolygon(*points, fill=None, border='cyan', borderWidth=5)
+    pupilX = cx + app.pupilOffset
+    drawCircle(pupilX, cy, 28, fill=None, border='cyan', borderWidth=4)
+
+
+
 # App
 def onAppStart(app):
     app.width = 1200
@@ -167,6 +221,9 @@ def onAppStart(app):
     app.stdDev = 0
     app.stepsPerSecond = 10  # Check for updates 10 times per second. It does not have to be as fast as the device because it outputs once per second.
     app.pendingUpdate = None
+
+    #eye app start
+    setupEye(app)
     
     # This just initializes the collector. Claude.ai recommended we use the try/except notation for this.
     # app.collector is an instance of the ParkinsonsDataCollector class, with the port, model, and encoder all defined.
@@ -188,6 +245,8 @@ def dataCallback(app, state, data):
 
 # This processes the updates. It helps to initialize variables and add values to dictionaries.
 def onStep(app):
+    #update eye animation
+    updateEye(app)
     if app.pendingUpdate:
         state, data = app.pendingUpdate
         app.pendingUpdate = None
@@ -381,6 +440,7 @@ def redrawAll(app):
     
     if app.state in ['idle', 'complete']:
         if app.state == 'idle':
+            drawEye(app)
             drawRect(buttonX, buttonY, buttonWidth, buttonHeight, 
                     fill='black', border='cyan', borderWidth=3, align='center')
             drawLabel('BEGIN', buttonX, buttonY, size=24, bold=True, fill='cyan', font = 'monospace')
