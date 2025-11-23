@@ -17,6 +17,7 @@ Social Good.
   - import numpy as np
   - import pickle
   - import sklearn
+  - import random
   
 **How to run your program:**
 
