@@ -1,0 +1,421 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fnil\fcharset0 Menlo-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fmodern\fcharset0 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red220\green220\blue220;\red30\green31\blue33;\red13\green110\blue255;
+\red26\green206\blue255;\red22\green164\blue3;\red73\green176\blue119;\red223\green223\blue223;}
+{\*\expandedcolortbl;;\cssrgb\c89020\c89020\c89020;\cssrgb\c15686\c16471\c17255;\cssrgb\c0\c52941\c100000;
+\cssrgb\c0\c84314\c100000;\cssrgb\c0\c68627\c0;\cssrgb\c34118\c73333\c54118;\cssrgb\c89804\c89804\c89804;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 === Parkinson's Eye - Likelihood of Parkinson's Disease ===\
+\
+Step 1: Loading accelerometer data...\
+Loaded 300 samples\
+\
+Step 2: Extracting x, y, z accelerometer data...\
+Valid samples: 300\
+\
+Step 3: Standardizing data to length 100...\
+Data standardization complete\
+\
+Step 4: Encoding labels...\
+\
+Encoder mapping:\
+  False: 0\
+  True: 1\
+\
+Step 5: Splitting data into training and test sets...\
+\
+Step 6: Building CNN with input shape (100, 3) and 2 classes...\
+/usr/local/lib/python3.12/dist-packages/keras/src/layers/convolutional/base_conv.py:113: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.\
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)\
+=== CNN Architecture ===\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b \cf2 Model: "sequential_1"
+\f2\b0 \
+\uc0\u9487 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9523 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9523 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9491 \
+\uc0\u9475 
+\f1\b  Layer (type)                    
+\f2\b0 \uc0\u9475 
+\f1\b  Output Shape           
+\f2\b0 \uc0\u9475 
+\f1\b        Param # 
+\f2\b0 \uc0\u9475 \
+\uc0\u9505 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9543 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9543 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9513 \
+\uc0\u9474  conv1d_3 (\cf4 \strokec4 Conv1D\cf2 \strokec2 )               \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 100\cf2 \strokec2 , \cf6 \strokec6 64\cf2 \strokec2 )        \uc0\u9474          \cf6 \strokec6 1,024\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  batch_normalization_4           \u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 100\cf2 \strokec2 , \cf6 \strokec6 64\cf2 \strokec2 )        \uc0\u9474            \cf6 \strokec6 256\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9474  (\cf4 \strokec4 BatchNormalization\cf2 \strokec2 )            \uc0\u9474                         \u9474                \u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  max_pooling1d_3 (\cf4 \strokec4 MaxPooling1D\cf2 \strokec2 )  \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 50\cf2 \strokec2 , \cf6 \strokec6 64\cf2 \strokec2 )         \uc0\u9474              \cf6 \strokec6 0\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  dropout_5 (\cf4 \strokec4 Dropout\cf2 \strokec2 )             \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 50\cf2 \strokec2 , \cf6 \strokec6 64\cf2 \strokec2 )         \uc0\u9474              \cf6 \strokec6 0\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  conv1d_4 (\cf4 \strokec4 Conv1D\cf2 \strokec2 )               \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 50\cf2 \strokec2 , \cf6 \strokec6 128\cf2 \strokec2 )        \uc0\u9474         \cf6 \strokec6 41,088\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  batch_normalization_5           \u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 50\cf2 \strokec2 , \cf6 \strokec6 128\cf2 \strokec2 )        \uc0\u9474            \cf6 \strokec6 512\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9474  (\cf4 \strokec4 BatchNormalization\cf2 \strokec2 )            \uc0\u9474                         \u9474                \u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  max_pooling1d_4 (\cf4 \strokec4 MaxPooling1D\cf2 \strokec2 )  \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 25\cf2 \strokec2 , \cf6 \strokec6 128\cf2 \strokec2 )        \uc0\u9474              \cf6 \strokec6 0\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  dropout_6 (\cf4 \strokec4 Dropout\cf2 \strokec2 )             \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 25\cf2 \strokec2 , \cf6 \strokec6 128\cf2 \strokec2 )        \uc0\u9474              \cf6 \strokec6 0\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  conv1d_5 (\cf4 \strokec4 Conv1D\cf2 \strokec2 )               \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 25\cf2 \strokec2 , \cf6 \strokec6 256\cf2 \strokec2 )        \uc0\u9474         \cf6 \strokec6 98,560\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  batch_normalization_6           \u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 25\cf2 \strokec2 , \cf6 \strokec6 256\cf2 \strokec2 )        \uc0\u9474          \cf6 \strokec6 1,024\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9474  (\cf4 \strokec4 BatchNormalization\cf2 \strokec2 )            \uc0\u9474                         \u9474                \u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  max_pooling1d_5 (\cf4 \strokec4 MaxPooling1D\cf2 \strokec2 )  \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 12\cf2 \strokec2 , \cf6 \strokec6 256\cf2 \strokec2 )        \uc0\u9474              \cf6 \strokec6 0\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  dropout_7 (\cf4 \strokec4 Dropout\cf2 \strokec2 )             \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 12\cf2 \strokec2 , \cf6 \strokec6 256\cf2 \strokec2 )        \uc0\u9474              \cf6 \strokec6 0\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  flatten_1 (\cf4 \strokec4 Flatten\cf2 \strokec2 )             \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 3072\cf2 \strokec2 )           \uc0\u9474              \cf6 \strokec6 0\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  dense_3 (\cf4 \strokec4 Dense\cf2 \strokec2 )                 \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 128\cf2 \strokec2 )            \uc0\u9474        \cf6 \strokec6 393,344\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  batch_normalization_7           \u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 128\cf2 \strokec2 )            \uc0\u9474            \cf6 \strokec6 512\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9474  (\cf4 \strokec4 BatchNormalization\cf2 \strokec2 )            \uc0\u9474                         \u9474                \u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  dropout_8 (\cf4 \strokec4 Dropout\cf2 \strokec2 )             \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 128\cf2 \strokec2 )            \uc0\u9474              \cf6 \strokec6 0\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  dense_4 (\cf4 \strokec4 Dense\cf2 \strokec2 )                 \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 64\cf2 \strokec2 )             \uc0\u9474          \cf6 \strokec6 8,256\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  dropout_9 (\cf4 \strokec4 Dropout\cf2 \strokec2 )             \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 64\cf2 \strokec2 )             \uc0\u9474              \cf6 \strokec6 0\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9500 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9532 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9508 \
+\uc0\u9474  dense_5 (\cf4 \strokec4 Dense\cf2 \strokec2 )                 \uc0\u9474  (\cf5 \strokec5 None\cf2 \strokec2 , \cf6 \strokec6 2\cf2 \strokec2 )              \uc0\u9474            \cf6 \strokec6 130\cf2 \strokec2  \uc0\u9474 \
+\uc0\u9492 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9524 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9524 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9496 \
+
+\f1\b  Total params: 
+\f2\b0 \cf6 \strokec6 544,706\cf2 \strokec2  (2.08 MB)\
+
+\f1\b  Trainable params: 
+\f2\b0 \cf6 \strokec6 543,554\cf2 \strokec2  (2.07 MB)\
+
+\f1\b  Non-trainable params: 
+\f2\b0 \cf6 \strokec6 1,152\cf2 \strokec2  (4.50 KB)\
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf2 === Training the Model ===\
+Training samples: 240\
+Testing samples: 60\
+Epochs: 100, Batch size: 32\
+\
+Epoch 1/100\
+\pard\pardeftab720\partightenfactor0
+
+\f3\b \cf2 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  44ms/step - accuracy: 0.6165 - loss: 1.2063\
+Epoch 1: val_accuracy improved from -inf to 0.83333, saving model to parkinsonsEye.keras\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 8s
+\f0\b0  124ms/step - accuracy: 0.6526 - loss: 1.0879 - val_accuracy: 0.8333 - val_loss: 0.4703\
+Epoch 2/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  43ms/step - accuracy: 0.9051 - loss: 0.2648\
+Epoch 2: val_accuracy improved from 0.83333 to 0.98333, saving model to parkinsonsEye.keras\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 1s
+\f0\b0  69ms/step - accuracy: 0.9104 - loss: 0.2483 - val_accuracy: 0.9833 - val_loss: 0.3875\
+Epoch 3/100\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  42ms/step - accuracy: 0.9550 - loss: 0.1900\
+Epoch 3: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  54ms/step - accuracy: 0.9558 - loss: 0.1843 - val_accuracy: 0.7833 - val_loss: 0.4372\
+Epoch 4/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  44ms/step - accuracy: 0.9579 - loss: 0.1052\
+Epoch 4: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  55ms/step - accuracy: 0.9607 - loss: 0.1002 - val_accuracy: 0.5167 - val_loss: 0.8370\
+Epoch 5/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  43ms/step - accuracy: 0.9768 - loss: 0.0592\
+Epoch 5: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  53ms/step - accuracy: 0.9801 - loss: 0.0545 - val_accuracy: 0.5000 - val_loss: 1.3416\
+Epoch 6/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  44ms/step - accuracy: 0.9823 - loss: 0.1072\
+Epoch 6: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  53ms/step - accuracy: 0.9825 - loss: 0.0971 - val_accuracy: 0.5000 - val_loss: 1.5887\
+Epoch 7/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  47ms/step - accuracy: 0.9966 - loss: 0.0162\
+Epoch 7: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  56ms/step - accuracy: 0.9964 - loss: 0.0164 - val_accuracy: 0.5000 - val_loss: 1.8547\
+Epoch 8/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  44ms/step - accuracy: 0.9906 - loss: 0.0155\
+Epoch 8: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  54ms/step - accuracy: 0.9899 - loss: 0.0196 - val_accuracy: 0.5000 - val_loss: 2.1241\
+Epoch 9/100\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  52ms/step - accuracy: 0.9942 - loss: 0.0248\
+Epoch 9: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 1s
+\f0\b0  84ms/step - accuracy: 0.9934 - loss: 0.0260 - val_accuracy: 0.5000 - val_loss: 2.4673\
+Epoch 10/100\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  95ms/step - accuracy: 0.9892 - loss: 0.0219 \
+Epoch 10: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 1s
+\f0\b0  113ms/step - accuracy: 0.9881 - loss: 0.0234 - val_accuracy: 0.5000 - val_loss: 2.7128\
+Epoch 11/100\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  73ms/step - accuracy: 0.9964 - loss: 0.0166\
+Epoch 11: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 1s
+\f0\b0  104ms/step - accuracy: 0.9959 - loss: 0.0177 - val_accuracy: 0.5000 - val_loss: 3.0223\
+Epoch 12/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  77ms/step - accuracy: 1.0000 - loss: 0.0080\
+Epoch 12: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 1s
+\f0\b0  87ms/step - accuracy: 1.0000 - loss: 0.0086 - val_accuracy: 0.5000 - val_loss: 3.2337\
+Epoch 13/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  44ms/step - accuracy: 1.0000 - loss: 0.0061\
+Epoch 13: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  55ms/step - accuracy: 1.0000 - loss: 0.0064 - val_accuracy: 0.5000 - val_loss: 3.4465\
+Epoch 14/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  44ms/step - accuracy: 0.9929 - loss: 0.0168\
+Epoch 14: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  53ms/step - accuracy: 0.9935 - loss: 0.0166 - val_accuracy: 0.5000 - val_loss: 3.6344\
+Epoch 15/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  43ms/step - accuracy: 0.9929 - loss: 0.0081\
+Epoch 15: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  53ms/step - accuracy: 0.9935 - loss: 0.0086 - val_accuracy: 0.5000 - val_loss: 3.7227\
+Epoch 16/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  43ms/step - accuracy: 1.0000 - loss: 0.0074\
+Epoch 16: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  53ms/step - accuracy: 1.0000 - loss: 0.0073 - val_accuracy: 0.5000 - val_loss: 3.8850\
+Epoch 17/100\
+
+\f3\b 7/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf8 \strokec8 \uc0\u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  44ms/step - accuracy: 0.9929 - loss: 0.0133\
+Epoch 17: val_accuracy did not improve from 0.98333\
+
+\f3\b 8/8
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  54ms/step - accuracy: 0.9935 - loss: 0.0128 - val_accuracy: 0.5000 - val_loss: 4.0262\
+Epoch 17: early stopping\
+Restoring model weights from the end of the best epoch: 2.\
+\
+=== Model Evaluation ===\
+
+\f3\b 2/2
+\f0\b0  \cf7 \strokec7 \uc0\u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \u9473 \cf2 \strokec2  
+\f3\b 0s
+\f0\b0  179ms/step\
+\
+=== Sample Predictions with Probabilities ===\
+\
+Sample 0:\
+  False: 70.23%\
+  True: 29.77%\
+  \uc0\u8594  Predicted: False\
+  \uc0\u8594  True label: False\
+\
+Sample 1:\
+  False: 62.09%\
+  True: 37.91%\
+  \uc0\u8594  Predicted: False\
+  \uc0\u8594  True label: False\
+\
+Sample 2:\
+  False: 72.27%\
+  True: 27.73%\
+  \uc0\u8594  Predicted: False\
+  \uc0\u8594  True label: False\
+\
+Sample 3:\
+  False: 69.28%\
+  True: 30.72%\
+  \uc0\u8594  Predicted: False\
+  \uc0\u8594  True label: False\
+\
+Sample 4:\
+  False: 70.33%\
+  True: 29.67%\
+  \uc0\u8594  Predicted: False\
+  \uc0\u8594  True label: False\
+\
+Sample 5:\
+  False: 72.34%\
+  True: 27.66%\
+  \uc0\u8594  Predicted: False\
+  \uc0\u8594  True label: False\
+\
+Sample 6:\
+  False: 74.24%\
+  True: 25.76%\
+  \uc0\u8594  Predicted: False\
+  \uc0\u8594  True label: False\
+\
+Sample 7:\
+  False: 74.27%\
+  True: 25.73%\
+  \uc0\u8594  Predicted: False\
+  \uc0\u8594  True label: False\
+\
+Sample 8:\
+  False: 22.00%\
+  True: 78.00%\
+  \uc0\u8594  Predicted: True\
+  \uc0\u8594  True label: True\
+\
+Sample 9:\
+  False: 66.52%\
+  True: 33.48%\
+  \uc0\u8594  Predicted: False\
+  \uc0\u8594  True label: False\
+\
+=== Overall Performance ===\
+Test Loss: 0.3875\
+Test Accuracy: 0.9833\
+\
+=== Classification Report ===\
+              precision    recall  f1-score   support\
+\
+       False       0.97      1.00      0.98        30\
+        True       1.00      0.97      0.98        30\
+\
+    accuracy                           0.98        60\
+   macro avg       0.98      0.98      0.98        60\
+weighted avg       0.98      0.98      0.98        60\
+\
+\
+=== Confusion Matrix ===\
+[[30  0]\
+ [ 1 29]]\
+\
+Rows: True labels, Columns: Predicted labels\
+Classes: ['False' 'True']\
+\
+=== Probability Statistics ===\
+False:\
+  Mean probability: 50.98%\
+  Min probability: 8.38%\
+  Max probability: 76.08%\
+True:\
+  Mean probability: 49.02%\
+  Min probability: 23.92%\
+  Max probability: 91.62%\
+\
+=== Training Complete ===\
+Final test accuracy: 0.9833\
+Best model saved as 'parkinsonsEye.keras'\
+\
+Saving label encoder for future predictions...\
+Label encoder saved as 'labelEncoder.pkl'}
