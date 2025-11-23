@@ -1,1 +1,4 @@
+app.py - the code to run the app
+parkinsonsEye.keras - the trained convolutional neural network
+labelEncoder.pkl - the encoded labels for the machine learning algorithm - [False = 0, True = 1]
 
