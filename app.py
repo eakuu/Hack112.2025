@@ -241,11 +241,11 @@ def drawMovementGraph(app):
                  border='cyan', borderWidth=2)
         
         drawLabel('Hand Movement Data (XYZ Accelerometer)', 
-                  graphX + graphWidth//2, graphY - 20, size=18, bold=True, fill='cyan')
+                  graphX + graphWidth//2, graphY - 20, size=18, bold=True, fill='cyan', font = 'monospace')
         
         if not app.allData:
             drawLabel('No data available', graphX + graphWidth//2, 
-                     graphY + graphHeight//2, size=16, fill='gray')
+                     graphY + graphHeight//2, size=16, fill='gray', font = 'monospace')
             return
     except Exception as e:
         print(f"Error in graph setup: {e}")
@@ -287,7 +287,7 @@ def drawMovementGraph(app):
     except Exception as e:
         print(f"Error processing data: {e}")
         drawLabel(f'Error: {str(e)}', graphX + graphWidth//2, 
-                 graphY + graphHeight//2, size=14, fill='red')
+                 graphY + graphHeight//2, size=14, fill='red', font = 'monospace')
         return
     
     try:
@@ -296,7 +296,7 @@ def drawMovementGraph(app):
             y = graphY + (i * graphHeight / 4)
             drawLine(graphX, y, graphX + graphWidth, y, fill='dimGray', lineWidth=1)
             value = maxVal - (i * valueRange / 4)
-            drawLabel(f'{value:.1f}', graphX - 15, y, size=10, fill='lightGray', align='right')
+            drawLabel(f'{value:.1f}', graphX - 15, y, size=10, fill='lightGray', align='right', font = 'monospace')
         
         # Draw bottom axis line
         drawLine(graphX, graphY + graphHeight, graphX + graphWidth, graphY + graphHeight, 
@@ -308,7 +308,7 @@ def drawMovementGraph(app):
             drawLine(x, graphY + graphHeight, x, graphY + graphHeight + 5, 
                     fill='cyan', lineWidth=1)
             drawLabel(f'{second}s', x, graphY + graphHeight + 15, 
-                     size=10, fill='white')
+                     size=10, fill='white', font = 'monospace')
     except Exception as e:
         print(f"Error drawing axes: {e}")
     
@@ -355,7 +355,7 @@ def drawMovementGraph(app):
         for idx, (color, label) in enumerate(legend_items):
             y = legendY + idx * 25
             drawLine(legendX, y, legendX + 30, y, fill=color, lineWidth=3)
-            drawLabel(label, legendX + 50, y, size=12, fill='white', align='left')
+            drawLabel(label, legendX + 50, y, size=12, fill='white', align='left', font = 'monospace')
         
         # Draw vertical lines to separate seconds (static)
         for second in range(1, 10):
@@ -371,7 +371,7 @@ def redrawAll(app):
     
     # Title
     drawLabel("Parkinson's Disease Detection", app.width//2, 50, 
-              size=32, bold=True, fill='cyan')
+              size=32, bold=True, fill='cyan', font = 'monospace')
     
     # Begin Button
     buttonX, buttonY = app.width // 2, 150
@@ -381,27 +381,28 @@ def redrawAll(app):
         if app.state == 'idle':
             drawRect(buttonX, buttonY, buttonWidth, buttonHeight, 
                     fill='black', border='cyan', borderWidth=3, align='center')
-            drawLabel('BEGIN', buttonX, buttonY, size=24, bold=True, fill='cyan')
+            drawLabel('BEGIN', buttonX, buttonY, size=24, bold=True, fill='cyan', font = 'monospace')
     
     # Status Display
     if app.state == 'idle':
         if not app.connected:
             drawLabel('Error: Could not connect to device', app.width//2, 250, 
-                     size=18, fill='red')
+                     size=20, fill='red', font = 'monospace')
+            drawLabel('*check if device is properly connected and secured', app.width//2, 280, size  = 20, fill = 'red', font = 'monospace')
         else:
             drawLabel('Press BEGIN to start', app.width//2, 250, 
-                     size=20, fill='white')
+                     size=20, fill='white', font = 'monospace')
     
     elif app.state == 'waiting':
         drawLabel('Waiting for button press on device...', app.width//2, 250, 
-                 size=22, fill='cyan', bold=True)
+                 size=22, fill='cyan', bold=True, font = 'monospace')
         drawLabel('Please press the button on your Arduino', app.width//2, 290, 
-                 size=16, fill='white')
+                 size=16, fill='white', font = 'monospace')
     
     elif app.state == 'collecting':
         # Progress
         drawLabel(f'Collecting Data: {app.currentSecond}/10 seconds', 
-                 app.width//2, 250, size=22, fill='cyan', bold=True)
+                 app.width//2, 250, size=22, fill='cyan', bold=True, font = 'monospace')
         
         # Progress bar
         barWidth = 500
@@ -417,7 +418,7 @@ def redrawAll(app):
         # Current probability
         if app.currentSecond > 0:
             drawLabel(f'Current Probability: {app.currentProb:.1f}%', 
-                     app.width//2, 360, size=28, bold=True, fill='white')
+                     app.width//2, 360, size=28, bold=True, fill='white', font = 'monospace')
             
             # Color indicator
             color = 'green' if app.currentProb < 50 else 'red' 
@@ -427,10 +428,10 @@ def redrawAll(app):
         if app.predictions:
             y = 500
             drawLabel('Second-by-Second Results:', app.width//2, y, 
-                     size=16, bold=True, fill='white')
+                     size=16, bold=True, fill='white', font = 'monospace')
             
             predText = ' | '.join([f'{i+1}: {p:.1f}%' for i, p in enumerate(app.predictions)])
-            drawLabel(predText, app.width//2, y + 30, size=14, fill='white')
+            drawLabel(predText, app.width//2, y + 30, size=14, fill='white', font = 'monospace')
     
     elif app.state == 'complete':
         
@@ -438,9 +439,9 @@ def redrawAll(app):
                 border='cyan', borderWidth=2, align='center')
         
         drawLabel(f'Average Probability: {app.avgProb:.2f}%', 
-                 app.width//2, 120, size=20, bold=True, fill='white')
+                 app.width//2, 120, size=20, bold=True, fill='white', font = 'monospace')
         drawLabel(f'Standard Deviation: {app.stdDev:.2f}%', 
-                 app.width//2, 150, size=16, fill='gray')
+                 app.width//2, 150, size=16, fill='gray', font = 'monospace')
         
         # Final diagnosis
         if app.avgProb >= 50.0:
@@ -451,7 +452,7 @@ def redrawAll(app):
             color = 'green'
         
         drawLabel(f'Result: {result}', app.width//2, 180, 
-                 size=18, bold=True, fill=color)
+                 size=18, bold=True, fill=color, font = 'monospace')
         
         # Draw the graph
         drawMovementGraph(app)
@@ -461,7 +462,7 @@ def redrawAll(app):
         buttonWidth, buttonHeight = 200, 50
         drawRect(buttonX, buttonY, buttonWidth, buttonHeight, 
                 fill='black', border='cyan', borderWidth=3, align='center')
-        drawLabel('BEGIN AGAIN', buttonX, buttonY, size=18, bold=True, fill='cyan')
+        drawLabel('BEGIN AGAIN', buttonX, buttonY, size=18, bold=True, fill='cyan', font = 'monospace')
 
 def onAppStop(app):
     if hasattr(app, 'collector'):
