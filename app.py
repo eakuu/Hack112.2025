@@ -469,8 +469,21 @@ def redrawAll(app):
     # Status Display
     if app.state == 'idle':
         if not app.connected:
-            drawLabel('Error: Could not connect to device', app.width//2, 250, 
-                     size=18, fill='red', font = 'monospace')
+            drawCircle(app.width//2, app.height//2, 75, fill = None, border = 'red', borderWidth = 10)
+            tLx, tLy = getRadiusEndpoint(app.width//2, app.height//2, 75, 135)
+            tRx, tRy = getRadiusEndpoint(app.width//2, app.height//2, 75, 45)
+            bRx, bRy = getRadiusEndpoint(app.width//2, app.height//2, 75, -45)
+            bLx, bLy = getRadiusEndpoint(app.width//2, app.height//2, 75, -135)
+            drawLine(app.width//2, app.height//2, tLx, tLy, fill = 'red', lineWidth = 10)
+            drawLine(app.width//2, app.height//2, tRx, tRy, fill = 'red', lineWidth = 10)
+            drawLine(app.width//2, app.height//2, bLx, bLy, fill = 'red', lineWidth = 10)
+            drawLine(app.width//2, app.height//2, bRx, bRy, fill = 'red', lineWidth = 10)
+            drawLabel('Error: Could not connect to device', app.width//2, 230, 
+                     size=20, fill='red', font = 'monospace', bold = True)
+            drawLabel('*check if device is properly connected and secured', app.width//2, 475, size  = 20, fill = 'red', font = 'monospace', bold = True)
+        else:
+            drawLabel('Press BEGIN to start', app.width//2, 250, 
+                     size=20, fill='white', font = 'monospace')
         else:
             drawLabel('Press BEGIN to start', app.width//2, 250, 
                      size=20, fill='white', font = 'monospace')
