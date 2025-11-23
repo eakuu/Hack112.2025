@@ -1,4 +1,4 @@
-# Detecting Potential Risk of Parkinson's Disease through accelerometery using OOP, MVC, and a 1D-CNN training pipeline for binary classification.
+# Detecting Potential Risk of Parkinson's Disease Through Accelerometery Using OOP, MVC, and a 1D-CNN Training Pipeline for Binary Classification
 
 Award Categories:
 
