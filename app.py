@@ -8,6 +8,7 @@ from tensorflow.keras.models import load_model
 import random
 import math
 
+# This is the class for collecting data using the arduino.
 class ParkinsonsDataCollector:
     def __init__(self, port, modelPath, encoderPath, baudrate=115200):
         self.port = port                # The chosen port by the person (we used usbmodem101).
@@ -156,7 +157,7 @@ class ParkinsonsDataCollector:
             self.ser.close()
             print("Connection closed.")
 
-# ----------eye animation idle state----------
+# Eye static
 def setupEye(app):
     app.eyeX = app.width//2
     app.eyeY = 450
@@ -166,6 +167,7 @@ def setupEye(app):
     app.lastChangeTime = time.time()
     app.nextChangeDelay = random.uniform(0.5, 2.5)
 
+# Eye animation
 def updateEye(app):
     currentTime = time.time()
     if currentTime - app.lastChangeTime > app.nextChangeDelay:
@@ -179,6 +181,7 @@ def updateEye(app):
     elif app.pupilOffset > app.pupilTarget:
         app.pupilOffset -= speed
 
+# Eye draw
 def drawEye(app):
     cx = app.eyeX
     cy = app.eyeY
@@ -207,7 +210,7 @@ def drawEye(app):
     pupilX = cx + app.pupilOffset
     drawCircle(pupilX, cy, 28, fill=None, border='cyan', borderWidth=4)
 
-# ----------loader animation setup----------
+# Loader Static
 def setupLoader(app):
     app.loaderNumCircles = 4
     app.loaderRadius = 20
@@ -217,6 +220,7 @@ def setupLoader(app):
     app.loaderStepDelay = 0.03
     app.loaderSpeed = 0.05
 
+# Loader Animation
 def updateLoader(app):
     currentTime = time.time()
     if currentTime - app.loaderLastUpdate > app.loaderStepDelay:
