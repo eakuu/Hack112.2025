@@ -218,7 +218,7 @@ def setupLoader(app):
     app.loaderCurrentStep = 0
     app.loaderLastUpdate = time.time()
     app.loaderStepDelay = 0.03
-    app.loaderSpeed = 0.05
+    app.loaderSpeed = 0.12
 
 # Loader Animation
 def updateLoader(app):
